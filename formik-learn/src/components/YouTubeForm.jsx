@@ -1,5 +1,7 @@
 import React from "react";
+// libraries
 import { useFormik } from "formik";
+import * as Yup from "yup";
 
 const initialValues = {
   name: "",
@@ -9,20 +11,26 @@ const initialValues = {
 
 const onSubmit = (values) => console.log(values);
 
-const validate = (values) => {
-  let errors = {};
-  if (!values.name) errors.name = "Required";
-  if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email))
-    errors.email = "Required";
-  if (!values.channel) errors.channel = "Required";
+// const validate = (values) => {
+//   let errors = {};
+//   if (!values.name) errors.name = "Required";
+//   if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email))
+//     errors.email = "Required";
+//   if (!values.channel) errors.channel = "Required";
 
-  return errors;
-};
+//   return errors;
+// };
+
+const validationSchema = Yup.object({
+  name: Yup.string().required("Required!"),
+  email: Yup.string().email("Invalid email format!").required("Required!"),
+  channel: Yup.string().required("Required!"),
+});
 
 const YouTubeForm = () => {
   const formik = useFormik({
     initialValues,
-    validate,
+    validationSchema,
     onSubmit,
   });
 
