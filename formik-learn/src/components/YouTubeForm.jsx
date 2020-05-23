@@ -31,6 +31,24 @@ const YouTubeForm = () => (
         <ErrorMessage name="channel" />
       </div>
 
+      <div className="form-control">
+        <label htmlFor="comments">Comments</label>
+        <Field as="textarea" type="text" id="comments" name="comments" />
+        <ErrorMessage name="channel" />
+      </div>
+
+      <div className="form-control">
+        <label htmlFor="comments">Address</label>
+        <Field name="address">
+          {({ field, meta: { touched, error } }) => (
+            <div>
+              <input type="text" id="address" {...field} />
+              {touched && error && <div>{error}</div>}
+            </div>
+          )}
+        </Field>
+      </div>
+
       <button>Submit</button>
     </Form>
   </Formik>

@@ -6,6 +6,8 @@ export const useFormikProps = () => {
     name: "",
     email: "",
     channel: "",
+    comments: "",
+    address: "",
   };
 
   const validationSchema = Yup.object({
